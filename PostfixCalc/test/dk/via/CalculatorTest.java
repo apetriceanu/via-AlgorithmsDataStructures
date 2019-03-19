@@ -2,8 +2,6 @@ package dk.via;
 
 import org.junit.*;
 
-import static org.junit.Assert.*;
-
 public class CalculatorTest {
     private Calculator c;
 
@@ -15,12 +13,8 @@ public class CalculatorTest {
 
     @Test
     public void processInputFirstTest() {
-        c.processInput("3 80 2 / +");
+        c.calculate("4 7 2 + *");
         System.out.println(c.getStackContents());
-        System.out.println(c.calculate());
-
-
-
     }
 
 }

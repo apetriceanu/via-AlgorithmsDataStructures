@@ -4,6 +4,8 @@ import dk.via.data.Operator;
 import dk.via.data.Number;
 import dk.via.stack.MyStack;
 
+import java.util.StringTokenizer;
+
 public class Calculator {
     private final String ADD = "+";
     private final String SUB = "-";
@@ -17,20 +19,25 @@ public class Calculator {
 
     }
 
-    public void processInput(String input) {
-        String[] elements = input.split("\\s");
+    public int calculate(String input) {
+        int numberOne, numberTwo;
+        int result = 0;
+        String token;
+        StringTokenizer tokenizer = new StringTokenizer(input);
 
-        for(String s : elements) {
-            if (isOperator(s)) {
-                Operator o = new Operator(s);
-                stack.push(o);
+        while(tokenizer.hasMoreTokens()) {
+            token = tokenizer.nextToken();
+
+            if(isOperator(token)) {
+                numberTwo = Integer.parseInt(stack.pop().toString());
+                numberOne = Integer.parseInt(stack.pop().toString());
+                result = singleOperation(token, numberOne, numberTwo);
+                stack.push(new Number(String.valueOf(result)));
             } else {
-                Number n = new Number(s);
-                stack.push(n);
+                stack.push(new Operator(token));
             }
         }
-
-
+            return result;
     }
 
     private boolean isOperator(String s) {
@@ -39,35 +46,6 @@ public class Calculator {
 
     public String getStackContents() {
         return stack.toString();
-    }
-
-    public int calculate() {
-        int numberOne, numberTwo;
-        String operator;
-
-        int result = 0;
-
-        while (!(stack.isEmpty())) {
-            operator = stack.pop().toString();
-            if (isOperator(operator)) {
-                numberTwo = Integer.parseInt(stack.pop().toString());
-                numberOne = Integer.parseInt(stack.pop().toString());
-
-                result = singleOperation(operator, numberOne, numberTwo);
-
-                stack.push(new Number(String.valueOf(result)));
-
-
-            } else {
-                stack.push(new Number("0"));
-                return result;
-            }
-        }
-
-
-
-        return result;
-
     }
 
     private int singleOperation(String operator, int n1, int n2) {
@@ -79,8 +57,6 @@ public class Calculator {
             case MUL: result = n1 * n2; break;
             case DIV: result = n1 / n2; break;
         }
-
         return result;
     }
-
 }
