@@ -37,7 +37,8 @@ public class Calculator {
                 stack.push(new Operator(token));
             }
         }
-            return result;
+
+        return result;
     }
 
     private boolean isOperator(String s) {
