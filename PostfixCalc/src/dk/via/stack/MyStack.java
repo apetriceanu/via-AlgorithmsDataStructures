@@ -52,4 +52,9 @@ public class MyStack<T> implements StackADT<T> {
     public int size() {
         return stack.size();
     }
+
+    @Override
+    public String toString() {
+        return stack.toString();
+    }
 }
