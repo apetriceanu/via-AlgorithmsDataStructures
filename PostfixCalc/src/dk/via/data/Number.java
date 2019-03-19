@@ -13,17 +13,12 @@ public class Number implements Element {
     }
 
     @Override
-    public String getValue() {
-        return Integer.toString(value);
-    }
-
-    @Override
     public boolean isOperator() {
         return false;
     }
 
     @Override
     public String toString() {
-        return getValue();
+        return Integer.toString(value);
     }
 }

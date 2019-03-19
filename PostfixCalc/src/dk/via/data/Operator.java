@@ -8,17 +8,12 @@ public class Operator implements Element {
     }
 
     @Override
-    public String getValue() {
-        return symbol;
-    }
-
-    @Override
     public boolean isOperator() {
         return true;
     }
 
     @Override
     public String toString() {
-        return getValue();
+        return symbol;
     }
 }
